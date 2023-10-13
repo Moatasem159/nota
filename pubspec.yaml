@@ -1,0 +1,67 @@
+name: nota
+description: A new Flutter project.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+version: 1.0.0+1
+environment:
+  sdk: '>=3.1.3 <4.0.0'
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: any
+  hive: ^2.2.3
+  dartz: ^0.10.1
+  get_it: ^7.6.4
+  go_router: ^11.1.4
+  flutter_bloc: ^8.1.3
+  hive_flutter: ^1.1.0
+  fluttertoast: ^8.2.2
+  cupertino_icons: ^1.0.6
+  font_awesome_flutter: ^10.5.0
+  flutter_native_splash: any
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^2.4.6
+  flutter_lints: ^2.0.3
+  hive_generator: ^2.0.1
+  flutter_launcher_icons: ^0.13.1
+flutter_native_splash:
+  image: assets/images/nota_logo_black.png
+  color: "#F6F5F5"
+  image_dark: assets/images/nota_logo_white.png
+  color_dark: "#222831"
+  android_12:
+   image: assets/images/nota_logo_black.png
+   color: "#F6F5F5"
+   image_dark: assets/images/nota_logo_white.png
+   color_dark: "#222831"
+flutter_launcher_icons:
+   android: true
+   ios: true
+   remove_alpha_ios: true
+   image_path: assets/images/nota.png
+   adaptive_icon_background: "#000000"
+   adaptive_icon_forground: assets/images/nota.png
+flutter:
+  uses-material-design: true
+  assets:
+   - assets/images/
+  fonts:
+    - family: sora
+      fonts:
+        - asset: assets/fonts/sora/Sora-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/sora/Sora-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/sora/Sora-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/sora/Sora-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/sora/Sora-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/sora/Sora-Light.ttf
+          weight: 300
+        - asset: assets/fonts/sora/Sora-ExtraLight.ttf
+          weight: 200
+        - asset: assets/fonts/sora/Sora-Thin.ttf
+          weight: 100
