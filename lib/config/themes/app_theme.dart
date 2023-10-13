@@ -7,6 +7,7 @@ abstract class AppTheme {
   static final ThemeData lightTheme=ThemeData(
     fontFamily: AppFonts.englishFontFamily,
     primaryColor: AppColors.whitePrimaryColor,
+    primaryColorLight: Colors.black,
     iconTheme: const IconThemeData(color: Colors.black),
     textTheme: const TextTheme(
       bodyLarge: TextStyle(
@@ -62,6 +63,7 @@ abstract class AppTheme {
   static final ThemeData darkTheme=ThemeData(
     fontFamily: AppFonts.englishFontFamily,
     primaryColor: AppColors.blackPrimaryColor,
+      primaryColorLight: Colors.white,
     iconTheme: const IconThemeData(color: Colors.white),
     textTheme: const TextTheme(
         bodyLarge: TextStyle(

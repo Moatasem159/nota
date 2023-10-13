@@ -7,7 +7,6 @@ class BottomNavBarPainter extends CustomPainter{
     Paint paintFill0 = Paint()
       ..color = backgroundColor
       ..style = PaintingStyle.fill
-      ..strokeWidth = size.width*0.00
       ..strokeCap = StrokeCap.butt
       ..strokeJoin = StrokeJoin.miter;
     Path path_0 = Path();

@@ -7,18 +7,18 @@ class AddNoteButton extends StatelessWidget {
     return Positioned(
       left: context.width/1.357,
       bottom: context.height-707,
-      child: InkWell(
+      child: Material(
+        color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+        animationDuration: const Duration(milliseconds: 5000),
         borderRadius: BorderRadius.circular(15),
-        onTap: () {},
-        child: Container(
-          height: context.height/13.38181818181818,
-          width: context.width/6.206896551724138,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(15),
-              color: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
-              boxShadow: const [BoxShadow(spreadRadius: 1,color: Colors.white12,blurRadius: 1,blurStyle: BlurStyle.inner)]
+        child: InkWell(
+          borderRadius: BorderRadius.circular(15),
+          onTap: () {},
+          child: SizedBox(
+            height: context.height/13.38181818181818,
+            width: context.width/6.206896551724138,
+            child: const Icon(Icons.add,size: 40),
           ),
-          child: const Icon(Icons.add,size: 40),
         ),
       ),
     );
