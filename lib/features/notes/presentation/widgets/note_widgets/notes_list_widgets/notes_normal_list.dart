@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nota/core/extension/screen_size_extension.dart';
-import 'package:nota/features/notes/presentation/widgets/note_widget.dart';
+import 'package:nota/features/notes/presentation/widgets/note_widgets/note_widget.dart';
 class NotesNormalList extends StatelessWidget {
   const NotesNormalList({super.key});
   @override

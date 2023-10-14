@@ -57,8 +57,19 @@ abstract class AppTheme {
       ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: AppColors.whiteSecondaryColor),
-    appBarTheme: const AppBarTheme(backgroundColor: AppColors.whiteSecondaryColor),
-    colorScheme:const ColorScheme.light(background:AppColors.whiteBackgroundColor)
+    appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.whiteSecondaryColor,
+        iconTheme: IconThemeData(color: Colors.black),
+        elevation: 0,
+  ),
+    colorScheme:const ColorScheme.light(background:AppColors.whiteBackgroundColor),
+    tooltipTheme:  TooltipThemeData(
+      textStyle: const TextStyle(fontFamily: AppFonts.englishFontFamily,color: Colors.white),
+      decoration: BoxDecoration(
+        color: AppColors.blackBackgroundColor,
+          borderRadius: BorderRadius.circular(7)
+      ),
+    )
   );
   static final ThemeData darkTheme=ThemeData(
     fontFamily: AppFonts.englishFontFamily,
@@ -113,8 +124,18 @@ abstract class AppTheme {
         ),
     ),
     bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: AppColors.blackSecondaryColor),
-    appBarTheme: const AppBarTheme(backgroundColor: AppColors.blackSecondaryColor),
-    colorScheme:const ColorScheme.light(background:AppColors.blackBackgroundColor)
+    appBarTheme: const AppBarTheme(
+        backgroundColor: AppColors.blackSecondaryColor,
+        iconTheme: IconThemeData(color: Colors.white),
+        elevation: 0,
+      ),
+    colorScheme:const ColorScheme.light(background:AppColors.blackBackgroundColor),
+    tooltipTheme:  TooltipThemeData(
+        textStyle: const TextStyle(fontFamily: AppFonts.englishFontFamily,color: Colors.black),
+        decoration: BoxDecoration(
+          color: AppColors.whiteBackgroundColor,
+          borderRadius: BorderRadius.circular(7)
+        ),),
   );
   static SystemUiOverlayStyle systemUiOverlayStyle()=>
    SchedulerBinding.instance.platformDispatcher.platformBrightness==Brightness.dark?

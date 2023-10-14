@@ -3,7 +3,7 @@ import 'package:nota/core/extension/custom_padding_extension.dart';
 import 'package:nota/core/extension/screen_size_extension.dart';
 import 'package:nota/core/utils/app_fonts.dart';
 import 'package:nota/core/utils/app_strings.dart';
-import 'package:nota/features/notes/presentation/widgets/search_bar_widgets/custom_icon_button.dart';
+import 'package:nota/features/notes/presentation/widgets/custom_icon_button.dart';
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({super.key});
   @override

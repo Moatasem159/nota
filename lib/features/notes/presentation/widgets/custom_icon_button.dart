@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 class CustomIconButton extends StatelessWidget {
   final IconData icon;
+  final String ?tooltip;
+  final double ?iconSize;
   final VoidCallback onTap;
-  const CustomIconButton({super.key, required this.onTap, required this.icon});
+  const CustomIconButton({super.key, required this.onTap, required this.icon, this.tooltip,this.iconSize});
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -12,8 +14,9 @@ class CustomIconButton extends StatelessWidget {
       child: IconButton(
           onPressed: onTap,
           padding: EdgeInsets.zero,
-          splashRadius: 18,
-          icon:Icon(icon)),
+          tooltip: tooltip,
+          splashRadius: 20,
+          icon:Icon(icon,size:iconSize)),
     );
   }
 }

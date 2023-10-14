@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:nota/core/extension/screen_size_extension.dart';
-import 'package:nota/features/notes/presentation/widgets/note_widget.dart';
+import 'package:nota/features/notes/presentation/widgets/note_widgets/note_widget.dart';
 class NotesGridList extends StatelessWidget {
   const NotesGridList({super.key});
   @override
