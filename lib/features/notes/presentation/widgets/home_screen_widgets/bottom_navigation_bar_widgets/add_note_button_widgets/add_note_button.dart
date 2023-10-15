@@ -49,6 +49,7 @@ class _AddNoteButtonState extends State<AddNoteButton> with SingleTickerProvider
         closedBuilder: (context, action) => AddNoteButtonBuilder(onTap:() {
           Future.delayed(const Duration(milliseconds: 50)).then((value) {action();});
           animateForeword();
+
         }),
         openBuilder: (context, action) => AddNoteScreen(arrowBack: () {
           animateReverse();

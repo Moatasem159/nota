@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:nota/core/extension/custom_padding_extension.dart';
 import 'package:nota/core/extension/empty_padding_extension.dart';
 import 'package:nota/core/extension/screen_size_extension.dart';
+import 'package:nota/features/notes/domain/entities/note.dart';
 class NoteWidget extends StatelessWidget{
-  final String content;
+  final Note note;
   final bool isGrid;
-  const NoteWidget({super.key, required this.isGrid, required this.content});
+  const NoteWidget({super.key, required this.isGrid, required this.note});
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -24,18 +25,21 @@ class NoteWidget extends StatelessWidget{
           constraints:  BoxConstraints(
             minWidth: isGrid?0:context.width-60,
             maxWidth: isGrid?context.width/2.4:context.width-60,
-            maxHeight:isGrid?context.height/4:context.height/3
+            maxHeight:isGrid?context.height/3:context.height/3
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text("Title"),
-              if(content.isNotEmpty)
+              if(note.title.isNotEmpty)
+              Text(note.title),
+              if(note.note.isNotEmpty)
               Column(
                 children: [
                   10.ph,
-                  Text(content),
+                  Text(note.note,
+                      maxLines: 10,
+                      overflow: TextOverflow.ellipsis),
                 ],
               ),
             ],

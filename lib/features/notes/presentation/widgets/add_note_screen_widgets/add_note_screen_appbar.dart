@@ -9,7 +9,7 @@ class AddNoteScreenAppbar extends StatelessWidget implements PreferredSizeWidget
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).colorScheme.background,
-      leading: CustomIconButton(onTap: arrowBack, icon: Icons.arrow_back_outlined),
+      leading: CustomIconButton(onTap:arrowBack, icon: Icons.arrow_back_outlined),
       actions: [
         CustomIconButton(
           onTap: () {},

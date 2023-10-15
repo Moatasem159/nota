@@ -4,6 +4,7 @@ import 'package:nota/core/extension/screen_size_extension.dart';
 import 'package:nota/core/utils/app_fonts.dart';
 import 'package:nota/core/utils/app_strings.dart';
 import 'package:nota/features/notes/presentation/widgets/custom_icon_button.dart';
+import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/switch_list_view_button.dart';
 class SearchBarWidget extends StatelessWidget {
   const SearchBarWidget({super.key});
   @override
@@ -25,7 +26,7 @@ class SearchBarWidget extends StatelessWidget {
                   fontWeight: FontWeight.w600
               ),),
               const Spacer(),
-              CustomIconButton(icon: Icons.grid_view_rounded,onTap: () {}),
+              const SwitchListViewButton(),
             ],
           ),
         ),

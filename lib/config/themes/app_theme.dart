@@ -62,19 +62,26 @@ abstract class AppTheme {
         iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
   ),
-    colorScheme:const ColorScheme.light(background:AppColors.whiteBackgroundColor),
-    tooltipTheme:  TooltipThemeData(
+      colorScheme: ColorScheme.light(
+        background: AppColors.whiteBackgroundColor,
+        secondary: AppColors.whiteBackgroundColor.withOpacity(0.9),
+      ),
+      tooltipTheme:  TooltipThemeData(
       textStyle: const TextStyle(fontFamily: AppFonts.englishFontFamily,color: Colors.white),
       decoration: BoxDecoration(
         color: AppColors.blackBackgroundColor,
           borderRadius: BorderRadius.circular(7)
       ),
-    )
+    ),
+      inputDecorationTheme: const InputDecorationTheme(
+        border: InputBorder.none,
+        hintStyle: TextStyle(color: Colors.grey, fontSize: 22),
+      )
   );
   static final ThemeData darkTheme=ThemeData(
     fontFamily: AppFonts.englishFontFamily,
     primaryColor: AppColors.blackPrimaryColor,
-      primaryColorLight: Colors.white,
+    primaryColorLight: Colors.white,
     iconTheme: const IconThemeData(color: Colors.white),
     textTheme: const TextTheme(
         bodyLarge: TextStyle(
@@ -129,13 +136,22 @@ abstract class AppTheme {
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
       ),
-    colorScheme:const ColorScheme.light(background:AppColors.blackBackgroundColor),
-    tooltipTheme:  TooltipThemeData(
+      colorScheme: ColorScheme.light(
+          background: AppColors.blackBackgroundColor,
+          secondary: AppColors.blackBackgroundColor.withOpacity(0.9),),
+      tooltipTheme:  TooltipThemeData(
         textStyle: const TextStyle(fontFamily: AppFonts.englishFontFamily,color: Colors.black),
         decoration: BoxDecoration(
           color: AppColors.whiteBackgroundColor,
           borderRadius: BorderRadius.circular(7)
         ),),
+    inputDecorationTheme: const InputDecorationTheme(
+      border: InputBorder.none,
+      hintStyle: TextStyle(
+        color: Colors.grey,
+        fontSize: 22
+      )
+    )
   );
   static SystemUiOverlayStyle systemUiOverlayStyle()=>
    SchedulerBinding.instance.platformDispatcher.platformBrightness==Brightness.dark?

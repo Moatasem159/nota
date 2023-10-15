@@ -8,6 +8,7 @@ class AddNoteBottomSheet extends StatelessWidget {
     return Container(
       color: Theme.of(context).colorScheme.background,
       width: context.width,
+      height: 35,
       child: Row(
         children: [
           CustomIconButton(onTap: () {}, icon: Icons.add_box_outlined),
