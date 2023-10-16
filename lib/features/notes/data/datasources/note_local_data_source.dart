@@ -7,7 +7,10 @@ abstract class NoteLocalDataSource{
 class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   @override
   Future<int> addNote(Note note)async {
-   Box hive=Hive.box<Note>(AppConstants.noteBox);
-   return await hive.add(note);
+   if(!note.isEmpty()){
+     Box hive=Hive.box<Note>(AppConstants.noteBox);
+     return await hive.add(note);
+   }
+  return-1;
   }
 }

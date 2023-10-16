@@ -8,6 +8,7 @@ abstract class AppTheme {
     fontFamily: AppFonts.englishFontFamily,
     primaryColor: AppColors.whitePrimaryColor,
     primaryColorLight: Colors.black,
+    primaryColorDark: Colors.white,
     iconTheme: const IconThemeData(color: Colors.black),
     textTheme: const TextTheme(
       bodyLarge: TextStyle(
@@ -82,6 +83,7 @@ abstract class AppTheme {
     fontFamily: AppFonts.englishFontFamily,
     primaryColor: AppColors.blackPrimaryColor,
     primaryColorLight: Colors.white,
+    primaryColorDark: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
     textTheme: const TextTheme(
         bodyLarge: TextStyle(
