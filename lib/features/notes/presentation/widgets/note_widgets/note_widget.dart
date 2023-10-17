@@ -33,7 +33,7 @@ class NoteWidget extends StatelessWidget{
             ),
             constraints:  BoxConstraints(
               minWidth: isGrid?0:context.width-60,
-              minHeight: isGrid?40:40,
+              minHeight: 40,
               maxWidth: isGrid?context.width/2.4:context.width-60,
             ),
             child: Column(

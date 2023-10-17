@@ -6,13 +6,8 @@ import 'package:nota/features/notes/presentation/cubits/notes_cubit/notes_state.
 class NotesCubit extends Cubit<NotesStates>{
   NotesCubit() : super(GetNotesInitialState());
   List<Note> notes=[];
-  bool isGrid=true;
   getNotes(){
     notes=Hive.box<Note>(AppConstants.noteBox).values.toList();
     emit(GetNotesSuccessState());
-  }
-  changeView(){
-    isGrid=!isGrid;
-    emit(ChangeViewState());
   }
 }
