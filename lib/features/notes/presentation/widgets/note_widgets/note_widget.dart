@@ -24,12 +24,14 @@ class NoteWidget extends StatelessWidget{
             note.delete();
             BlocProvider.of<NotesCubit>(context).getNotes();
           },
+
           borderRadius:BorderRadius.circular(10),
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Theme.of(context).primaryColorLight),
+              color:note.color==Colors.transparent.value ? null : Color(note.color),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color:note.color==Colors.transparent.value?Theme.of(context).primaryColorLight:Colors.transparent),
             ),
             constraints:  BoxConstraints(
               minWidth: isGrid?0:context.width-60,
@@ -54,7 +56,6 @@ class NoteWidget extends StatelessWidget{
                   ),
               ],
             ),
-
           ),
         ),
       ),

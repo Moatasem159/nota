@@ -12,9 +12,10 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
   }
   late TextEditingController title;
   late TextEditingController content;
+  late int color;
   Future<void> addNote() async {
     emit(AddNoteLoadingState());
-    Note note=Note(title: title.text, note: content.text, date: DateTime.now().toIso8601String());
+    Note note=Note(title: title.text, note: content.text, date: DateTime.now().toIso8601String(),color: color);
     Either<dynamic, int> result = await _addNoteUsecase.call(note: note);
     emit(
       result.fold(
@@ -26,6 +27,11 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
   Future<void> editNote(Note note)async{
     note.title=title.text;
     note.note=content.text;
+    note.color=color;
     note.save();
+  }
+  changeColor(int value){
+    color=value;
+    emit(ChangeColorState());
   }
 }

@@ -8,7 +8,9 @@ class Note extends HiveObject {
   String note;
   @HiveField(2)
   String date;
-  Note({required this.title, required this.note, required this.date});
+  @HiveField(3)
+  int color;
+  Note({required this.title, required this.note, required this.date,required this.color});
   bool isEmpty(){
    return title==''&&note==''?true:false;
   }

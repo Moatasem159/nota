@@ -5,4 +5,5 @@ abstract class AppStrings{
   static const String archive="Archive";
   static const String title="Title";
   static const String note="Note";
+  static const String color="Color";
 }

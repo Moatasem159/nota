@@ -6,3 +6,4 @@ class AddNoteSuccessState extends AddNoteStates {
 }
 class AddNoteLoadingState extends AddNoteStates {}
 class AddNoteErrorState extends AddNoteStates {}
+class ChangeColorState extends AddNoteStates {}

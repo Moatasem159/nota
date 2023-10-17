@@ -40,6 +40,7 @@ class CustomTextFormField extends StatelessWidget {
       style: style,
       onChanged: onChange,
       validator: validator,
+      cursorColor: Theme.of(context).primaryColorLight,
       decoration: InputDecoration(
         isDense: true,
         isCollapsed: true,
