@@ -10,7 +10,7 @@ import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_
 import 'package:nota/features/notes/presentation/cubits/notes_cubit/notes_cubit.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_appbar.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_body.dart';
-import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_bottom_sheet.dart';
+import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/bottom_bar/add_note_bottom_bar.dart';
 class AddNoteScreen extends StatelessWidget {
   final Note? note;
   final VoidCallback? arrowBack;
