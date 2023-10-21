@@ -1,8 +1,8 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:nota/core/extension/screen_size_extension.dart';
 import 'package:nota/features/notes/presentation/screens/add_note_screen.dart';
 import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/bottom_navigation_bar_widgets/add_note_button_widgets/add_note_button_builder.dart';
-import 'package:nota/core/widgets/open_container.dart';
 class AddNoteButton extends StatefulWidget {
   const AddNoteButton({super.key});
   @override
@@ -11,13 +11,12 @@ class AddNoteButton extends StatefulWidget {
 class _AddNoteButtonState extends State<AddNoteButton> with SingleTickerProviderStateMixin {
   late AnimationController _slideController;
   late Animation<Offset> _slideTransition;
-  late CurvedAnimation _slideCurveAnimations;
   @override
   void initState() {
     super.initState();
     _slideController = AnimationController(vsync: this, duration: const Duration(milliseconds:200),reverseDuration: const Duration(milliseconds: 0));
-    _slideCurveAnimations = CurvedAnimation(parent: _slideController, curve: Curves.fastEaseInToSlowEaseOut);
-    _slideTransition = Tween<Offset>(begin:Offset.zero, end: const Offset(-1, -1.5)).animate(_slideCurveAnimations);
+    _slideTransition = Tween<Offset>(begin: Offset.zero, end: const Offset(-1, -1.5)).animate(
+            CurvedAnimation(parent: _slideController, curve: Curves.fastEaseInToSlowEaseOut));
   }
   animateForeword() {
     _slideController.reset();

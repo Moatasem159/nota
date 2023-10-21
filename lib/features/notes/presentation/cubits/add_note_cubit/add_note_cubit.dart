@@ -24,10 +24,16 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
       ),
     );
   }
-  Future<void> editNote(Note note)async{
-    note.title=title.text;
-    note.note=content.text;
-    note.color=color;
+  Future<void> editNote(Note note) async {
+    if (note.title != title.text) {
+      note.title = title.text;
+    }
+    if (note.note != content.text) {
+      note.note = content.text;
+    }
+    if (note.color != color) {
+      note.color = color;
+    }
     note.save();
   }
   changeColor(int value){

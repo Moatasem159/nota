@@ -25,7 +25,6 @@ class AddNoteScreenBody extends StatelessWidget {
             if(value.length>=150){
               CustomToast.showToast(context, msg: "Title too large");
             }
-            BlocProvider.of<AddNoteCubit>(context).title.text = value;
           },
           hintText: AppStrings.title,
           minLines: 1,
@@ -35,9 +34,7 @@ class AddNoteScreenBody extends StatelessWidget {
         10.ph,
         CustomTextFormField(
           controller: BlocProvider.of<AddNoteCubit>(context).content,
-          onChange: (value) {
-            BlocProvider.of<AddNoteCubit>(context).content.text = value;
-          },
+          onChange: (value) {},
           autoFocus:  BlocProvider.of<AddNoteCubit>(context).content.text.isEmpty?true:false,
           hintText: AppStrings.note,
           maxLines: null,

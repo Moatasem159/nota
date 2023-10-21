@@ -4,7 +4,7 @@ import 'package:nota/core/extension/screen_size_extension.dart';
 class ToastWidget extends StatelessWidget {
   final String msg;
 
-  const ToastWidget({Key? key, required this.msg}) : super(key: key);
+  const ToastWidget({super.key, required this.msg});
 
   @override
   Widget build(BuildContext context) {
