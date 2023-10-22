@@ -10,8 +10,10 @@ class Note extends HiveObject {
   String date;
   @HiveField(3)
   int color;
-  Note({required this.title, required this.note, required this.date,required this.color});
+  @HiveField(4)
+  String imagePath;
+  Note({required this.title, required this.note, required this.date,required this.color,required this.imagePath});
   bool isEmpty(){
-   return title==''&&note==''?true:false;
+   return title==''&&note==''&&imagePath==''?true:false;
   }
 }

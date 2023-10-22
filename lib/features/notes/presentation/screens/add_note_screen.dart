@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,7 +10,7 @@ import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_state.dart';
 import 'package:nota/features/notes/presentation/cubits/notes_cubit/notes_cubit.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_appbar.dart';
-import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_body.dart';
+import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_body/add_note_screen_body_builder.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/bottom_bar/add_note_bottom_bar.dart';
 class AddNoteScreen extends StatelessWidget {
   final Note? note;
@@ -21,7 +22,9 @@ class AddNoteScreen extends StatelessWidget {
       create: (context) => AddNoteCubit(di.sl())
         ..color = note?.color ??Colors.transparent.value
         ..title.text = note?.title ?? ''
-        ..content.text = note?.note ?? '',
+        ..content.text = note?.note ?? ''
+        ..imagePath=note?.imagePath ??''
+      ..image=File(note?.imagePath ??''),
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(
         listener: (BuildContext context, AddNoteStates state) {
           if (state is AddNoteSuccessState && state.isAdded) {

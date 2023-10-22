@@ -6,4 +6,6 @@ abstract class AppStrings{
   static const String title="Title";
   static const String note="Note";
   static const String color="Color";
+  static const String takePhoto="Take photo";
+  static const String addImage="Add image";
 }

@@ -12,6 +12,7 @@ class NoteWidget extends StatelessWidget{
   Widget build(BuildContext context) {
     return OpenContainer(
       closedElevation:5,
+      openElevation: 10,
       openColor: Theme.of(context).colorScheme.background,
       closedColor:note.color==Colors.transparent.value ? Theme.of(context).colorScheme.background : Color(note.color),
       middleColor: Theme.of(context).colorScheme.background,
@@ -21,6 +22,6 @@ class NoteWidget extends StatelessWidget{
           arrowBack: () => action,
           note: note,
         ),
-    ).addAllPadding(5);
+    ).addSymmetricPadding(h: 7,v: 8);
   }
 }
