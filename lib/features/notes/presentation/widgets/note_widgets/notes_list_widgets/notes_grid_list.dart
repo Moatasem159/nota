@@ -11,16 +11,12 @@ class NotesGridList extends StatelessWidget {
   Widget build(BuildContext context) {
     return  BlocBuilder<NotesCubit, NotesStates>(
   builder: (context, state) {
-    return SliverToBoxAdapter(
-      child: MasonryGridView.builder(
-          padding: EdgeInsets.only(bottom: context.height / 15),
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: BlocProvider.of<NotesCubit>(context).notes.length,
-          shrinkWrap: true,
-          gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemBuilder: (_, index) => NoteWidget(isGrid: true,note:BlocProvider.of<NotesCubit>(context).notes[index])),
+    return MasonryGridView.builder(
+        padding: EdgeInsets.only(bottom: context.height / 15),
+        itemCount: BlocProvider.of<NotesCubit>(context).notes.length,
+        gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemBuilder: (_, index) => NoteWidget(isGrid: true,note:BlocProvider.of<NotesCubit>(context).notes[index]));
+      },
     );
-  },
-);
   }
 }

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:nota/core/utils/app_strings.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_state.dart';
@@ -20,12 +19,12 @@ class AddNoteScreenAppbar extends StatelessWidget implements PreferredSizeWidget
           actions: [
             CustomIconButton(
               onTap: () {},
-              icon: MdiIcons.pin,
+              icon: Icons.push_pin_rounded,
               tooltip: AppStrings.pin,
             ),
             CustomIconButton(
               onTap: () {},
-              icon: MdiIcons.bellPlusOutline,
+              icon: Icons.notification_add_outlined,
               tooltip: AppStrings.reminder,
             ),
             CustomIconButton(

@@ -10,14 +10,10 @@ class NotesNormalList extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<NotesCubit, NotesStates>(
       builder: (context, state) {
-        return SliverToBoxAdapter(
-          child: ListView.builder(
-              padding: EdgeInsets.only(bottom: context.height / 15),
-              shrinkWrap: true,
-              itemCount: BlocProvider.of<NotesCubit>(context).notes.length,
-              physics: const NeverScrollableScrollPhysics(),
-              itemBuilder: (context, index) => NoteWidget(isGrid: false, note: BlocProvider.of<NotesCubit>(context).notes[index])),
-        );
+        return ListView.builder(
+            padding: EdgeInsets.only(bottom: context.height / 15),
+            itemCount: BlocProvider.of<NotesCubit>(context).notes.length,
+            itemBuilder: (context, index) => NoteWidget(isGrid: false, note: BlocProvider.of<NotesCubit>(context).notes[index]));
       },
     );
   }

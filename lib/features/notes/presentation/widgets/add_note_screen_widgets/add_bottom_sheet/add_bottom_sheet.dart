@@ -19,11 +19,11 @@ class AddBottomSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AddBottomSheetTile(
-              onTap: () => BlocProvider.of<AddNoteCubit>(context).getImageFromGallery(true),
+              onTap: () => BlocProvider.of<AddNoteCubit>(context).getImage(true),
               icon: Icons.camera_alt_outlined,
               title: AppStrings.takePhoto),
           AddBottomSheetTile(
-              onTap: () => BlocProvider.of<AddNoteCubit>(context).getImageFromGallery(false),
+              onTap: () => BlocProvider.of<AddNoteCubit>(context).getImage(false),
               icon: Icons.image_outlined,
               title: AppStrings.addImage)
         ],

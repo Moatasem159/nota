@@ -1,6 +1,8 @@
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/core/extension/screen_size_extension.dart';
+import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_cubit.dart';
 import 'package:nota/features/notes/presentation/screens/add_note_screen.dart';
 import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/bottom_navigation_bar_widgets/add_note_button_widgets/add_note_button_builder.dart';
 class AddNoteButton extends StatefulWidget {
@@ -46,6 +48,9 @@ class _AddNoteButtonState extends State<AddNoteButton> with SingleTickerProvider
         openElevation:10,
         closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         closedBuilder: (context, action) => AddNoteButtonBuilder(onTap:() {
+          if(!BlocProvider.of<AppBarCubit>(context).isBase){
+            BlocProvider.of<AppBarCubit>(context).removeSelection();
+          }
           Future.delayed(const Duration(milliseconds: 50)).then((value) {action();});
           animateForeword();
 

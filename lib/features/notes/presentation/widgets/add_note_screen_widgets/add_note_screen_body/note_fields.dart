@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/core/extension/empty_padding_extension.dart';
 import 'package:nota/core/extension/screen_size_extension.dart';
 import 'package:nota/core/utils/app_strings.dart';
-import 'package:nota/core/utils/input_formatter/letter_limit_formatter.dart';
 import 'package:nota/core/widgets/custom_text_form_field.dart';
 import 'package:nota/core/widgets/toast/custom_toast.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_cubit.dart';
@@ -19,7 +19,7 @@ class NoteFields extends StatelessWidget {
           CustomTextFormField(
             controller: BlocProvider.of<AddNoteCubit>(context).title,
             formatter: [
-              LetterLimitTextInputFormatter(150),
+             LengthLimitingTextInputFormatter(150)
             ],
             autoValidateMode: AutovalidateMode.onUserInteraction,
             onChange: (value) {
