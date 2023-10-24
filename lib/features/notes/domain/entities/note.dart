@@ -12,7 +12,16 @@ class Note extends HiveObject {
   int color;
   @HiveField(4)
   String imagePath;
-  Note({required this.title, required this.note, required this.date,required this.color,required this.imagePath});
+  @HiveField(5)
+  bool pinned;
+  Note({
+    required this.title,
+    required this.note,
+    required this.date,
+    required this.color,
+    required this.imagePath,
+    this.pinned=false,
+  });
   bool isEmpty(){
    return title==''&&note==''&&imagePath==''?true:false;
   }

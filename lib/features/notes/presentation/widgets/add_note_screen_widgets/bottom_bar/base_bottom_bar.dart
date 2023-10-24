@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/core/extension/empty_padding_extension.dart';
+import 'package:nota/core/functions/format_date.dart';
+import 'package:nota/core/utils/app_strings.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_bottom_sheet/add_bottom_sheet.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/colors_bottom_sheet/colors_bottom_sheet.dart';
@@ -34,7 +37,14 @@ class BaseBottomBar extends StatelessWidget {
               );
             },
             icon: Icons.color_lens_outlined),
+        5.pw,
         // const OpenTextStyleBarButton(),
+        Text(
+          "${AppStrings.edited} ${formatCustomDate(BlocProvider.of<AddNoteCubit>(context).date)}",
+          style: Theme.of(context).textTheme.labelMedium!.copyWith(
+            color: Colors.grey
+          ),
+        ),
         const Spacer(),
         CustomIconButton(onTap: () {}, icon: Icons.more_vert_rounded),
       ],

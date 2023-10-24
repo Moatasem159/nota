@@ -8,4 +8,5 @@ abstract class AppStrings{
   static const String color="Color";
   static const String takePhoto="Take photo";
   static const String addImage="Add image";
+  static const String edited="Edited";
 }

@@ -24,7 +24,8 @@ class AddNoteScreen extends StatelessWidget {
         ..title.text = note?.title ?? ''
         ..content.text = note?.note ?? ''
         ..imagePath=note?.imagePath ??''
-      ..image=File(note?.imagePath ??''),
+      ..image=File(note?.imagePath ??'')
+      ..date=note?.date!=null?note!.date:DateTime.now().toIso8601String(),
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(
         listener: (BuildContext context, AddNoteStates state) {
           if (state is AddNoteSuccessState && state.isAdded) {
