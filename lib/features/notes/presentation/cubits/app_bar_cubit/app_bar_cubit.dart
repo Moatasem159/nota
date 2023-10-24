@@ -5,9 +5,11 @@ import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_st
 class AppBarCubit extends Cubit<AppBarStates> {
   AppBarCubit() : super(AppBarInitialState()){
     isBase=true;
+    isPinned=false;
     selectedNotes=[];
   }
   late bool isBase;
+  late bool isPinned;
   late List<Note> selectedNotes;
   showOptionAppBar(){
     if(selectedNotes.length==1){
@@ -29,17 +31,23 @@ class AppBarCubit extends Cubit<AppBarStates> {
     if(selectedNotes.contains(note))
     {
       _unselectNotes(note);
+      if(selectedNotes.isEmpty)
+      {
+        isPinned = false;
+      }
       hideOptionAppBar();
     }
     else{
       _selectNotes(note);
        showOptionAppBar();
     }
+    _changeIsPinned();
     emit(SelectNoteState());
   }
   removeSelection(){
     selectedNotes.clear();
     isBase=true;
+    isPinned=true;
     emit(RemoveSelectionState());
   }
   deleteNotes(){
@@ -53,4 +61,37 @@ class AppBarCubit extends Cubit<AppBarStates> {
     hideOptionAppBar();
     emit(DeleteNotesSuccessState());
   }
-}
+  pinNotes(){
+    for (var element in selectedNotes){
+      if(isPinned)
+        {
+          if(element.pinned==true){
+            element.pinned=false;
+            element.save();
+          }
+        }
+      else{
+        if(element.pinned==false){
+          element.pinned=true;
+          element.save();
+        }
+      }
+    }
+    selectedNotes.clear();
+    isPinned=false;
+    hideOptionAppBar();
+    emit(PinNotesSuccessState());
+  }
+  _changeIsPinned(){
+    for (var element in selectedNotes) {
+        if(!element.pinned)
+        {
+          isPinned = false;
+          break;
+        }
+        else{
+          isPinned = true;
+        }
+      }
+    }
+  }

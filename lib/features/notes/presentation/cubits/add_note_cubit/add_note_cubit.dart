@@ -23,9 +23,10 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
   late int color;
   late File image;
   late String imagePath;
+  late bool pinned;
   Future<void> addNote() async {
     emit(AddNoteLoadingState());
-    Note note=Note(title: title.text, note: content.text, date: date,color: color,imagePath: imagePath);
+    Note note=Note(title: title.text, note: content.text, date: date,color: color,imagePath: imagePath,pinned: pinned);
     Either<dynamic, int> result = await _addNoteUsecase.call(note: note);
     emit(
       result.fold(
@@ -52,6 +53,11 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
       edit=true;
       note.imagePath = imagePath;
     }
+    if(note.pinned!=pinned)
+      {
+        edit=true;
+        note.pinned = pinned;
+      }
     if(note.isEmpty()){
       note.delete();
     }
@@ -65,6 +71,10 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
   changeColor(int value){
     color=value;
     emit(ChangeColorState());
+  }
+  changePinNote(){
+    pinned=!pinned;
+    emit(ChangePinNoteState());
   }
   Future<void> getImage(bool isCamera) async {
     final ImagePicker picker = ImagePicker();

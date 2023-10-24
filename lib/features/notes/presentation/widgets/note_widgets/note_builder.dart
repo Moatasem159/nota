@@ -38,7 +38,7 @@ class NoteBuilder extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
-              width: BlocProvider.of<AppBarCubit>(context).selectedNotes.contains(note)?4:(note.imagePath.isNotEmpty ?0.2:1),
+              width: BlocProvider.of<AppBarCubit>(context).selectedNotes.contains(note)?2.5:(note.imagePath.isNotEmpty ?0.2:1),
                 color:BlocProvider.of<AppBarCubit>(context).selectedNotes.contains(note)?Colors.blueAccent:(note.color==Colors.transparent.value?Theme.of(context).primaryColorLight:Colors.transparent)),
           ),
           constraints:  BoxConstraints(

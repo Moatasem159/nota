@@ -33,7 +33,7 @@ class NoteWidget extends StatelessWidget {
             }),
       ),
       openBuilder: (_, action) => AddNoteScreen(
-        arrowBack: () => action,
+        arrowBack: action,
         note: note,
       ),
     ).addSymmetricPadding(h: 7, v: 8);

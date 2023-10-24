@@ -25,7 +25,8 @@ class AddNoteScreen extends StatelessWidget {
         ..content.text = note?.note ?? ''
         ..imagePath=note?.imagePath ??''
       ..image=File(note?.imagePath ??'')
-      ..date=note?.date!=null?note!.date:DateTime.now().toIso8601String(),
+      ..date=note?.date!=null?note!.date:DateTime.now().toIso8601String()
+      ..pinned=note?.pinned??false,
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(
         listener: (BuildContext context, AddNoteStates state) {
           if (state is AddNoteSuccessState && state.isAdded) {
@@ -46,7 +47,7 @@ class AddNoteScreen extends StatelessWidget {
                   arrowBack();
                 } else {
                   BlocProvider.of<AddNoteCubit>(context).editNote(note!);
-                  BlocProvider.of<NotesCubit>(context).getNotes();
+                  BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
                 }
                 return true;
               },
@@ -60,7 +61,7 @@ class AddNoteScreen extends StatelessWidget {
                           arrowBack();
                         } else {
                           BlocProvider.of<AddNoteCubit>(context).editNote(note!);
-                          BlocProvider.of<NotesCubit>(context).getNotes();
+                          BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
                           GoRouter.of(context).pop();
                         }
                       },

@@ -6,6 +6,7 @@ import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_cu
 import 'package:nota/features/notes/presentation/widgets/custom_icon_button.dart';
 import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/home_app_bar_widgets/options_app_bar_widgets/delete_notes_button.dart';
 import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/home_app_bar_widgets/options_app_bar_widgets/notes_counter.dart';
+import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/home_app_bar_widgets/options_app_bar_widgets/pin_notes_button.dart';
 class OptionsAppBar extends StatelessWidget {
   const OptionsAppBar({super.key});
   @override
@@ -16,11 +17,13 @@ class OptionsAppBar extends StatelessWidget {
       child: Row(
         children: [
           CustomIconButton(
-              onTap: BlocProvider.of<AppBarCubit>(context).removeSelection,
+              onTap: BlocProvider
+                  .of<AppBarCubit>(context)
+                  .removeSelection,
               icon: Icons.clear),
           const NotesCounter(),
           const Spacer(),
-          CustomIconButton(onTap: () {}, icon: Icons.push_pin_outlined),
+          const PinNotesButton(),
           CustomIconButton(onTap: () {}, icon: Icons.notification_add_outlined),
           CustomIconButton(onTap: () {}, icon: Icons.color_lens_outlined),
           CustomIconButton(onTap: () {}, icon: Icons.label_outline_rounded),

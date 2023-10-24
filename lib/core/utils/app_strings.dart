@@ -9,4 +9,6 @@ abstract class AppStrings{
   static const String takePhoto="Take photo";
   static const String addImage="Add image";
   static const String edited="Edited";
+  static const String pinned="Pinned";
+  static const String others="Others";
 }

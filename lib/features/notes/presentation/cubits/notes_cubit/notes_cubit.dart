@@ -6,8 +6,22 @@ import 'package:nota/features/notes/presentation/cubits/notes_cubit/notes_state.
 class NotesCubit extends Cubit<NotesStates>{
   NotesCubit() : super(GetNotesInitialState());
   List<Note> notes=[];
-  getNotes(){
-    notes=Hive.box<Note>(AppConstants.noteBox).values.toList();
+  List<Note> pinnedNotes=[];
+  getNotes({bool edit=false})async{
+    if(edit) {
+      await Future.delayed(const Duration( milliseconds: 500));
+    }
+    notes.clear();
+    pinnedNotes.clear();
+    for(Note element in Hive.box<Note>(AppConstants.noteBox).values.toList())
+      {
+        if (element.pinned) {
+          pinnedNotes.add(element);
+        }
+        else {
+          notes.add(element);
+        }
+      }
     emit(GetNotesSuccessState());
   }
 }
