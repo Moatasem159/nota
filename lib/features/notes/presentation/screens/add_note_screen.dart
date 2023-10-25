@@ -1,4 +1,3 @@
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,13 +19,9 @@ class AddNoteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddNoteCubit(di.sl())
-        ..color = note?.color ??Colors.transparent.value
+      ..note=note??Note(date: DateTime.now().toIso8601String(),color:Colors.transparent.value)
         ..title.text = note?.title ?? ''
-        ..content.text = note?.note ?? ''
-        ..imagePath=note?.imagePath ??''
-      ..image=File(note?.imagePath ??'')
-      ..date=note?.date!=null?note!.date:DateTime.now().toIso8601String()
-      ..pinned=note?.pinned??false,
+        ..content.text = note?.note ?? '',
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(
         listener: (BuildContext context, AddNoteStates state) {
           if (state is AddNoteSuccessState && state.isAdded) {
@@ -38,14 +33,15 @@ class AddNoteScreen extends StatelessWidget {
           AddNoteCubit cubit = BlocProvider.of<AddNoteCubit>(context);
           return AnnotatedRegion<SystemUiOverlayStyle>(
             value: AppTheme.systemUiOverlayStyle().copyWith(
-                statusBarColor: cubit.color == Colors.transparent.value?Theme.of(context).colorScheme.background : Color(cubit.color),
-                systemNavigationBarColor:cubit.color == Colors.transparent.value?Theme.of(context).colorScheme.background:Color(cubit.color)),
+                statusBarColor: cubit.note.color == Colors.transparent.value?Theme.of(context).colorScheme.background : Color(cubit.note.color),
+                systemNavigationBarColor:cubit.note.color == Colors.transparent.value?Theme.of(context).colorScheme.background:Color(cubit.note.color)),
             child: WillPopScope(
               onWillPop: () async {
                 if (note == null) {
                   BlocProvider.of<AddNoteCubit>(context).addNote();
                   arrowBack();
-                } else {
+                }
+                else {
                   BlocProvider.of<AddNoteCubit>(context).editNote(note!);
                   BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
                 }
@@ -53,7 +49,7 @@ class AddNoteScreen extends StatelessWidget {
               },
               child: SafeArea(
                 child: Scaffold(
-                    backgroundColor:cubit.color==Colors.transparent.value ? Theme.of(context).colorScheme.background : Color(cubit.color),
+                    backgroundColor:cubit.note.color==Colors.transparent.value ? Theme.of(context).colorScheme.background : Color(cubit.note.color),
                     appBar: AddNoteScreenAppbar(
                       arrowBack: () {
                         if (note == null) {

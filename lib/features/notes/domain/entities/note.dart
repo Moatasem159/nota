@@ -15,11 +15,11 @@ class Note extends HiveObject {
   @HiveField(5)
   bool pinned;
   Note({
-    required this.title,
-    required this.note,
+    this.title="",
+    this.note="",
     required this.date,
     required this.color,
-    required this.imagePath,
+    this.imagePath="",
     this.pinned=false,
   });
   bool isEmpty(){

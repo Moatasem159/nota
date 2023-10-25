@@ -12,13 +12,13 @@ class ColorsBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ColorsBottomSheetCubit()..initializeColor(BlocProvider.of<AddNoteCubit>(context).color),
+      create: (context) => ColorsBottomSheetCubit()..initializeColor(BlocProvider.of<AddNoteCubit>(context).note.color),
       child: BlocBuilder<AddNoteCubit, AddNoteStates>(
         builder: (context, state) {
           return Container(
-            color: BlocProvider.of<AddNoteCubit>(context).color == Colors.transparent.value
+            color: BlocProvider.of<AddNoteCubit>(context).note.color == Colors.transparent.value
                 ? Theme.of(context).colorScheme.background
-                : Color(BlocProvider.of<AddNoteCubit>(context).color),
+                : Color(BlocProvider.of<AddNoteCubit>(context).note.color),
             height: context.height/5.257142857142857,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,

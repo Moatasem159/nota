@@ -13,9 +13,9 @@ class AddNoteBottomNavBar extends StatelessWidget {
         return Padding(
           padding: MediaQuery.of(context).viewInsets,
           child: Container(
-            color: BlocProvider.of<AddNoteCubit>(context).color==Colors.transparent.value
+            color: BlocProvider.of<AddNoteCubit>(context).note.color==Colors.transparent.value
                 ? Theme.of(context).colorScheme.background
-                : Color(BlocProvider.of<AddNoteCubit>(context).color),
+                : Color(BlocProvider.of<AddNoteCubit>(context).note.color),
             width: context.width,
             height: 45,
             child:const BaseBottomBar(),

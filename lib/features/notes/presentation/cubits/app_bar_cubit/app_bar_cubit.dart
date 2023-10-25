@@ -1,5 +1,5 @@
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:nota/core/functions/delete_image_file.dart';
+import 'package:nota/core/image/image_helper.dart';
 import 'package:nota/features/notes/domain/entities/note.dart';
 import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_state.dart';
 class AppBarCubit extends Cubit<AppBarStates> {
@@ -53,7 +53,7 @@ class AppBarCubit extends Cubit<AppBarStates> {
   deleteNotes(){
     for (var element in selectedNotes){
       if(element.imagePath!=""){
-        deleteImageFile(element.imagePath);
+         ImageHelper.deleteImageFile(element.imagePath);
       }
       element.delete();
     }

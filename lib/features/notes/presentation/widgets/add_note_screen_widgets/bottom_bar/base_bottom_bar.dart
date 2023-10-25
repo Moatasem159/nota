@@ -40,7 +40,7 @@ class BaseBottomBar extends StatelessWidget {
         5.pw,
         // const OpenTextStyleBarButton(),
         Text(
-          "${AppStrings.edited} ${formatCustomDate(BlocProvider.of<AddNoteCubit>(context).date)}",
+          "${AppStrings.edited} ${formatCustomDate(BlocProvider.of<AddNoteCubit>(context).note.date)}",
           style: Theme.of(context).textTheme.labelMedium!.copyWith(
             color: Colors.grey
           ),

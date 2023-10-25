@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -16,10 +18,10 @@ class ImageWidget extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        if (BlocProvider.of<AddNoteCubit>(context).image.path.isNotEmpty) {
+        if (BlocProvider.of<AddNoteCubit>(context).note.imagePath.isNotEmpty) {
           return Stack(
             children: [
-              Image(image: FileImage(BlocProvider.of<AddNoteCubit>(context).image)),
+              Image(image: FileImage(File(BlocProvider.of<AddNoteCubit>(context).note.imagePath))),
               Container(
                   width: 30,
                   height:30,

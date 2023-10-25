@@ -12,14 +12,14 @@ class AddNoteScreenAppbar extends StatelessWidget implements PreferredSizeWidget
     return BlocBuilder<AddNoteCubit, AddNoteStates>(
       builder: (context, state) {
         return AppBar(
-          backgroundColor: BlocProvider.of<AddNoteCubit>(context).color == Colors.transparent.value
+          backgroundColor: BlocProvider.of<AddNoteCubit>(context).note.color == Colors.transparent.value
               ? Theme.of(context).colorScheme.background
-              : Color(BlocProvider.of<AddNoteCubit>(context).color),
+              : Color(BlocProvider.of<AddNoteCubit>(context).note.color),
           leading: CustomIconButton(onTap: arrowBack, icon: Icons.arrow_back_outlined),
           actions: [
             CustomIconButton(
               onTap: BlocProvider.of<AddNoteCubit>(context).changePinNote,
-              icon: BlocProvider.of<AddNoteCubit>(context).pinned?Icons.push_pin_rounded:Icons.push_pin_outlined,
+              icon: BlocProvider.of<AddNoteCubit>(context).note.pinned?Icons.push_pin_rounded:Icons.push_pin_outlined,
               tooltip: AppStrings.pin,
             ),
             CustomIconButton(

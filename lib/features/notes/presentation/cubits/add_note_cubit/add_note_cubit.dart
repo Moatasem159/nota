@@ -1,14 +1,8 @@
-import 'dart:io';
-import 'package:path/path.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:nota/core/functions/delete_image_file.dart';
+import 'package:nota/core/image/image_helper.dart';
 import 'package:nota/features/notes/domain/entities/note.dart';
-import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:nota/features/notes/domain/usecases/add_note_usecase.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_state.dart';
 class AddNoteCubit extends Cubit<AddNoteStates> {
@@ -19,14 +13,11 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
   }
   late TextEditingController title;
   late TextEditingController content;
-  late String date;
-  late int color;
-  late File image;
-  late String imagePath;
-  late bool pinned;
+  late Note note;
   Future<void> addNote() async {
     emit(AddNoteLoadingState());
-    Note note=Note(title: title.text, note: content.text, date: date,color: color,imagePath: imagePath,pinned: pinned);
+    note.title=title.text;
+    note.note=content.text;
     Either<dynamic, int> result = await _addNoteUsecase.call(note: note);
     emit(
       result.fold(
@@ -35,87 +26,54 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
       ),
     );
   }
-  Future<void> editNote(Note note) async {
+  Future<void> editNote(Note noteModel) async {
     bool edit=false;
-    if (note.title != title.text){
+    if (noteModel.title != title.text){
       edit=true;
-      note.title = title.text;
+      noteModel.title = title.text;
     }
-    if (note.note != content.text) {
+    if (noteModel.note != content.text) {
       edit=true;
-      note.note = content.text;
+      noteModel.note = content.text;
     }
-    if (note.color != color) {
+    if (noteModel.color != note.color) {
       edit=true;
-      note.color = color;
+      noteModel.color = note.color;
     }
-    if(note.imagePath != imagePath) {
+    if(noteModel.imagePath != note.imagePath) {
       edit=true;
-      note.imagePath = imagePath;
+      noteModel.imagePath = note.imagePath;
     }
-    if(note.pinned!=pinned)
+    if(noteModel.pinned!=note.pinned)
       {
         edit=true;
-        note.pinned = pinned;
+        noteModel.pinned = note.pinned;
       }
-    if(note.isEmpty()){
-      note.delete();
+    if(noteModel.isEmpty()){
+      noteModel.delete();
     }
     else {
     if (edit) {
-        note.date=DateTime.now().toIso8601String();
-        note.save();
+        noteModel.date=DateTime.now().toIso8601String();
+        noteModel.save();
       }
     }
   }
   changeColor(int value){
-    color=value;
+    note.color=value;
     emit(ChangeColorState());
   }
   changePinNote(){
-    pinned=!pinned;
+    note.pinned=!note.pinned;
     emit(ChangePinNoteState());
   }
   Future<void> getImage(bool isCamera) async {
-    final ImagePicker picker = ImagePicker();
-    XFile? xFile = await picker.pickImage(source:isCamera? ImageSource.camera:ImageSource.gallery);
-    if (xFile != null) {
-      image = File(xFile.path);
-      emit(PickImageState());
-      await _saveImageToDocumentsDirectory(image,isCamera);
-    }
-  }
-  Future<Uint8List> _imageFileToBytes(File imageFile) async {
-    Uint8List bytes = await imageFile.readAsBytes();
-    return bytes;
-  }
-  Future<void> _saveImageToDocumentsDirectory(File img,bool isCamera) async {
-    final directory = await getApplicationDocumentsDirectory();
-    String imageName = basename(img.path);
-    imagePath = '${directory.path}/$imageName';
-    if(isCamera)
-      {
-        XFile ?file=await compressImageFromCamera(image, imagePath);
-        final File imageFile = File(file!.path);
-        await imageFile.writeAsBytes(await _imageFileToBytes(imageFile));
-      }
-    else{
-      final File imageFile = File(imagePath);
-      await imageFile.writeAsBytes(await _imageFileToBytes(img));
-    }
-
-  }
-  Future<XFile?> compressImageFromCamera(File file, String targetPath) async {
-    var result = await FlutterImageCompress.compressAndGetFile(
-      file.absolute.path, targetPath,
-      quality: 50,
-    );
-    return result;
+    note.imagePath=await ImageHelper.pickImage(isCamera);
+    emit(PickImageState());
   }
   removeImage(){
-    image=File("");
+    ImageHelper.deleteImageFile(note.imagePath);
+    note.imagePath='';
     emit(RemoveImageState());
-    deleteImageFile(imagePath);
-    imagePath='';
   }
 }

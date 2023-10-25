@@ -9,10 +9,10 @@ class AddBottomSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: BlocProvider.of<AddNoteCubit>(context).color ==
+      color: BlocProvider.of<AddNoteCubit>(context).note.color ==
               Colors.transparent.value
           ? Theme.of(context).colorScheme.background
-          : Color(BlocProvider.of<AddNoteCubit>(context).color),
+          : Color(BlocProvider.of<AddNoteCubit>(context).note.color),
       height: context.height / 8.658823529411765,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
