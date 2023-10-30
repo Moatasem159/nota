@@ -18,7 +18,7 @@ class SearchAppBar extends StatelessWidget {
         child: SizedBox(
           child: Row(
             children: [
-              CustomIconButton(icon: Icons.menu_rounded, onTap: () {}),
+              CustomIconButton(icon: Icons.menu_rounded, onTap: () {Scaffold.of(context).openDrawer();}),
               Text(
                 AppStrings.searchMsg,
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(

@@ -10,6 +10,9 @@ abstract class AppTheme {
     primaryColorLight: Colors.black,
     primaryColorDark: Colors.white,
     iconTheme: const IconThemeData(color: Colors.black),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: AppColors.whiteBackgroundColor,
+    ),
     textTheme: const TextTheme(
       bodyLarge: TextStyle(
         color:Colors.black
@@ -63,18 +66,18 @@ abstract class AppTheme {
         iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
   ),
-      colorScheme: ColorScheme.light(
+    colorScheme: ColorScheme.light(
         background: AppColors.whiteBackgroundColor,
         secondary: AppColors.whiteBackgroundColor.withOpacity(0.9),
       ),
-      tooltipTheme:  TooltipThemeData(
+    tooltipTheme:  TooltipThemeData(
       textStyle: const TextStyle(fontFamily: AppFonts.englishFontFamily,color: Colors.white),
       decoration: BoxDecoration(
         color: AppColors.blackBackgroundColor,
           borderRadius: BorderRadius.circular(7)
       ),
     ),
-      inputDecorationTheme: const InputDecorationTheme(
+    inputDecorationTheme: const InputDecorationTheme(
         border: InputBorder.none,
         hintStyle: TextStyle(color: Colors.grey, fontSize: 22),
       )
@@ -85,6 +88,9 @@ abstract class AppTheme {
     primaryColorLight: Colors.white,
     primaryColorDark: Colors.black,
     iconTheme: const IconThemeData(color: Colors.white),
+    drawerTheme: const DrawerThemeData(
+      backgroundColor: AppColors.blackBackgroundColor,
+    ),
     textTheme: const TextTheme(
         bodyLarge: TextStyle(
             color:Colors.white
@@ -138,10 +144,10 @@ abstract class AppTheme {
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
       ),
-      colorScheme: ColorScheme.light(
+    colorScheme: ColorScheme.light(
           background: AppColors.blackBackgroundColor,
           secondary: AppColors.blackBackgroundColor.withOpacity(0.9),),
-      tooltipTheme:  TooltipThemeData(
+    tooltipTheme:  TooltipThemeData(
         textStyle: const TextStyle(fontFamily: AppFonts.englishFontFamily,color: Colors.black),
         decoration: BoxDecoration(
           color: AppColors.whiteBackgroundColor,
