@@ -18,4 +18,5 @@ abstract class AppStrings{
   static const String deleted="Deleted";
   static const String settings="Settings";
   static const String help="Help & feedback";
+  static const String archiveBodyTitle="Your archive notes appear here";
 }

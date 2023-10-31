@@ -21,8 +21,7 @@ class SearchAppBar extends StatelessWidget {
               CustomIconButton(icon: Icons.menu_rounded, onTap: () {Scaffold.of(context).openDrawer();}),
               Text(
                 AppStrings.searchMsg,
-                style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                    fontSize: AppFontSize.f14, fontWeight: FontWeight.w600),
+                style: Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: AppFontSize.f14, fontWeight: FontWeight.w600),
               ),
               const Spacer(),
               const SwitchListViewButton(),

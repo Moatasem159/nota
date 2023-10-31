@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nota/config/themes/app_theme.dart';
-import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/home_drawer_widgets/drawer_builder.dart';
-class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key});
+import 'package:nota/features/notes/presentation/widgets/main_drawer_widgets/drawer_builder.dart';
+class MainDrawer extends StatelessWidget {
+  const MainDrawer({super.key});
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(

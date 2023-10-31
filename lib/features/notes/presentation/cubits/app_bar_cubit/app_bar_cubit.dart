@@ -3,10 +3,10 @@ import 'package:nota/core/image/image_helper.dart';
 import 'package:nota/features/notes/domain/entities/note.dart';
 import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_state.dart';
 class AppBarCubit extends Cubit<AppBarStates> {
-  AppBarCubit() : super(AppBarInitialState()){
-    isBase=true;
-    isPinned=false;
-    selectedNotes=[];
+  AppBarCubit() : super(AppBarInitialState()) {
+    isBase = true;
+    isPinned = false;
+    selectedNotes = [];
   }
   late bool isBase;
   late bool isPinned;
