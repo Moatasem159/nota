@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nota/app/injection_container.dart'as di show sl;
 import 'package:nota/config/routes/app_routes.dart';
 import 'package:nota/config/themes/app_theme.dart';
 import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_cubit.dart';
@@ -12,7 +13,7 @@ class Nota extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => NotesCubit()..getNotes()),
+        BlocProvider(create: (context) => NotesCubit(di.sl())..getNotes()),
         BlocProvider(create: (context) => AppBarCubit()),
         BlocProvider(create: (context) => ChangeListViewCubit()),
         BlocProvider(create: (context) => DrawerCubit()),
