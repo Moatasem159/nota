@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nota/app/injection_container.dart' as di show sl;
 import 'package:nota/config/themes/app_theme.dart';
+import 'package:nota/core/utils/app_constants.dart';
 import 'package:nota/features/notes/domain/entities/note.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_state.dart';
@@ -19,7 +20,7 @@ class AddNoteScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddNoteCubit(di.sl())
-      ..note=note??Note(date: DateTime.now().toIso8601String(),color:Colors.transparent.value)
+      ..note=note??Note(date: DateTime.now().toIso8601String(),color:Colors.transparent.value,boxName: AppConstants.noteBox)
         ..title.text = note?.title ?? ''
         ..content.text = note?.note ?? '',
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(

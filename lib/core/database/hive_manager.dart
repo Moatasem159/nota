@@ -30,4 +30,11 @@ class HiveManager extends HiveConsumer{
   Future<void> close()async {
    await _hive.close();
   }
+
+  @override
+  Future<void> addAll<E>(String boxName, List<E> value)async {
+    await openBox<E>(boxName);
+    await box<E>(boxName).addAll(value);
+    await close();
+  }
 }

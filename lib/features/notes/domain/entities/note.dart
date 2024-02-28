@@ -13,12 +13,15 @@ class Note extends HiveObject {
   @HiveField(4)
   String imagePath;
   @HiveField(5)
+  String boxName;
+  @HiveField(6)
   bool pinned;
   Note({
     this.title="",
     this.note="",
     required this.date,
     required this.color,
+    required this.boxName,
     this.imagePath="",
     this.pinned=false,
   });

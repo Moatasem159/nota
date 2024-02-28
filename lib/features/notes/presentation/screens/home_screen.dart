@@ -4,10 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/config/themes/app_theme.dart';
 import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_cubit.dart';
 import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_state.dart';
+import 'package:nota/features/notes/presentation/widgets/custom_drawer_widgets/main_drawer.dart';
 import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/bottom_navigation_bar_widgets/custom_bottom_nav_bar.dart';
 import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/home_screen_body.dart';
 import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/home_app_bar_widgets/home_app_bar.dart';
-import 'package:nota/features/notes/presentation/widgets/main_drawer_widgets/main_drawer.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   @override
@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
               appBar: const HomeAppBar(),
               body: const HomeScreenBody(),
               bottomNavigationBar: const CustomBottomNavBar(),
-              drawer: const MainDrawer(),
+              drawer: const CustomDrawer(),
             ),
           ),
         );

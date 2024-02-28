@@ -80,7 +80,10 @@ abstract class AppTheme {
     inputDecorationTheme: const InputDecorationTheme(
         border: InputBorder.none,
         hintStyle: TextStyle(color: Colors.grey, fontSize: 22),
-      )
+      ),
+    popupMenuTheme: const PopupMenuThemeData(
+      color: AppColors.whiteSecondaryColor,
+    )
   );
   static final ThemeData darkTheme=ThemeData(
     fontFamily: AppFonts.englishFontFamily,
@@ -144,7 +147,7 @@ abstract class AppTheme {
         iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
       ),
-    colorScheme: ColorScheme.light(
+    colorScheme: ColorScheme.dark(
           background: AppColors.blackBackgroundColor,
           secondary: AppColors.blackBackgroundColor.withOpacity(0.9),),
     tooltipTheme:  TooltipThemeData(
@@ -159,7 +162,9 @@ abstract class AppTheme {
         color: Colors.grey,
         fontSize: 22
       )
-    )
+    ),
+    popupMenuTheme: const PopupMenuThemeData(
+      color:AppColors.blackSecondaryColor,)
   );
   static SystemUiOverlayStyle systemUiOverlayStyle()=>
    SchedulerBinding.instance.platformDispatcher.platformBrightness==Brightness.dark?

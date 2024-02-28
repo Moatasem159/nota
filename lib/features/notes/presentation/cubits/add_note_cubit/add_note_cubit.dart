@@ -18,7 +18,7 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
     emit(AddNoteLoadingState());
     note.title=title.text;
     note.note=content.text;
-    Either<dynamic, int> result = await _addNoteUsecase.call(note: note);
+    Either<dynamic, int> result = await _addNoteUsecase(note: note);
     emit(
       result.fold(
         (l) => AddNoteErrorState(),
