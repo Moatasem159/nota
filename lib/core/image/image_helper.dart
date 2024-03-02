@@ -5,10 +5,10 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 abstract class ImageHelper{
-  static Future<String> pickImage(bool isCamera) async {
+  static Future<String> pickImage(ImageSource imageSource) async {
     final ImagePicker picker = ImagePicker();
     late final String imagePath;
-    XFile? xFile = await picker.pickImage(source:isCamera? ImageSource.camera:ImageSource.gallery);
+    XFile? xFile = await picker.pickImage(source:imageSource);
     if (xFile != null) {
       imagePath= await _saveImageToDocumentsDirectory(File(xFile.path));
     }
@@ -23,7 +23,7 @@ abstract class ImageHelper{
     return imageFile.path;
   }
   static Future<String> _createImagePath(File img)async{
-    final directory = await getApplicationDocumentsDirectory();
+    final Directory directory = await getApplicationDocumentsDirectory();
     String imageName = basename(img.path);
     return'${directory.path}/$imageName';
   }

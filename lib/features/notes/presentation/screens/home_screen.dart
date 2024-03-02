@@ -24,8 +24,8 @@ class HomeScreen extends StatelessWidget {
               backgroundColor: Theme.of(context).colorScheme.background,
               appBar: const HomeAppBar(),
               body: const HomeScreenBody(),
-              bottomNavigationBar: const CustomBottomNavBar(),
               drawer: const CustomDrawer(),
+              bottomNavigationBar: const CustomBottomNavBar(),
             ),
           ),
         );

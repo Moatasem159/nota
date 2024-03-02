@@ -9,7 +9,7 @@ class CustomBottomNavBar extends StatelessWidget {
     return Stack(
       children: [
         CustomPaint(
-          size: Size(context.width,context.height/8),
+          size: Size(context.width,context.height/8.5),
           painter: BottomNavBarPainter(backgroundColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor!),
         ),
         const AddNoteButton()

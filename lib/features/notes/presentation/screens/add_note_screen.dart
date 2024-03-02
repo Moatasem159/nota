@@ -14,8 +14,7 @@ import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/bottom_bar/add_note_bottom_bar.dart';
 class AddNoteScreen extends StatelessWidget {
   final Note? note;
-  final VoidCallback arrowBack;
-  const AddNoteScreen({super.key,required this.arrowBack, this.note});
+  const AddNoteScreen({super.key, this.note});
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -36,30 +35,30 @@ class AddNoteScreen extends StatelessWidget {
             value: AppTheme.systemUiOverlayStyle().copyWith(
                 statusBarColor: cubit.note.color == Colors.transparent.value?Theme.of(context).colorScheme.background : Color(cubit.note.color),
                 systemNavigationBarColor:cubit.note.color == Colors.transparent.value?Theme.of(context).colorScheme.background:Color(cubit.note.color)),
-            child: WillPopScope(
-              onWillPop: () async {
+            child: PopScope(
+              canPop:true,
+              onPopInvoked: (didPop) {
                 if (note == null) {
                   BlocProvider.of<AddNoteCubit>(context).addNote();
-                  arrowBack();
                 }
                 else {
                   BlocProvider.of<AddNoteCubit>(context).editNote(note!);
                   BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
                 }
-                return true;
               },
               child: SafeArea(
                 child: Scaffold(
                     backgroundColor:cubit.note.color==Colors.transparent.value ? Theme.of(context).colorScheme.background : Color(cubit.note.color),
                     appBar: AddNoteScreenAppbar(
                       arrowBack: () {
-                        if (note == null) {
+                        if (note == null)
+                        {
                           BlocProvider.of<AddNoteCubit>(context).addNote();
-                          arrowBack();
-                        } else {
+                        }
+                        else {
                           BlocProvider.of<AddNoteCubit>(context).editNote(note!);
                           BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
-                          GoRouter.of(context).pop();
+                          context.pop();
                         }
                       },
                     ),

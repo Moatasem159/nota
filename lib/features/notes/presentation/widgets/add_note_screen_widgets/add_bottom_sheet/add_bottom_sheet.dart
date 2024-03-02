@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nota/core/extension/screen_size_extension.dart';
 import 'package:nota/core/utils/app_strings.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_cubit.dart';
@@ -19,11 +20,11 @@ class AddBottomSheet extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AddBottomSheetTile(
-              onTap: () => BlocProvider.of<AddNoteCubit>(context).getImage(true),
+              onTap: () => BlocProvider.of<AddNoteCubit>(context).getImage(ImageSource.camera),
               icon: Icons.camera_alt_outlined,
               title: AppStrings.takePhoto),
           AddBottomSheetTile(
-              onTap: () => BlocProvider.of<AddNoteCubit>(context).getImage(false),
+              onTap: () => BlocProvider.of<AddNoteCubit>(context).getImage(ImageSource.gallery),
               icon: Icons.image_outlined,
               title: AppStrings.addImage)
         ],

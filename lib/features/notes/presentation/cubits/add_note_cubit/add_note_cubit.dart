@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:nota/core/image/image_helper.dart';
 import 'package:nota/features/notes/domain/entities/note.dart';
 import 'package:nota/features/notes/domain/usecases/add_note_usecase.dart';
@@ -44,8 +45,7 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
       edit=true;
       noteModel.imagePath = note.imagePath;
     }
-    if(noteModel.pinned!=note.pinned)
-      {
+    if(noteModel.pinned!=note.pinned) {
         edit=true;
         noteModel.pinned = note.pinned;
       }
@@ -67,8 +67,8 @@ class AddNoteCubit extends Cubit<AddNoteStates> {
     note.pinned=!note.pinned;
     emit(ChangePinNoteState());
   }
-  Future<void> getImage(bool isCamera) async {
-    note.imagePath=await ImageHelper.pickImage(isCamera);
+  Future<void> getImage(ImageSource imageSource) async {
+    note.imagePath=await ImageHelper.pickImage(imageSource);
     emit(PickImageState());
   }
   removeImage(){

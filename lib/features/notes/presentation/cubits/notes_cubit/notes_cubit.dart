@@ -15,7 +15,8 @@ class NotesCubit extends Cubit<NotesStates>{
     }
     notes.clear();
     pinnedNotes.clear();
-    for(Note element in _hive.box<Note>(AppConstants.noteBox).values.toList())
+    List<Note> cachedNotes=_hive.box<Note>(AppConstants.noteBox).values.toList();
+    for(Note element in cachedNotes)
       {
         if (element.pinned) {
           pinnedNotes.add(element);
@@ -24,6 +25,7 @@ class NotesCubit extends Cubit<NotesStates>{
           notes.add(element);
         }
       }
+    cachedNotes.clear();
     emit(GetNotesSuccessState());
   }
 }

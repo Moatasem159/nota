@@ -23,5 +23,5 @@ class BottomNavBarPainter extends CustomPainter{
     canvas.drawPath(path_0, paintFill0);
   }
   @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) =>true;
+  bool shouldRepaint(covariant CustomPainter oldDelegate) =>false;
 }
