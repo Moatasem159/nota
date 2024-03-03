@@ -8,7 +8,8 @@ import 'package:nota/features/notes/presentation/cubits/notes_cubit/notes_state.
 import 'package:nota/features/notes/presentation/widgets/note_widgets/note_widget.dart';
 import 'package:nota/features/notes/presentation/widgets/note_widgets/notes_list_widgets/list_title.dart';
 class NotesNormalList extends StatelessWidget {
-  const NotesNormalList({super.key});
+  final bool inArchivedScreen;
+  const NotesNormalList({super.key, required this.inArchivedScreen});
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<NotesCubit, NotesStates>(
@@ -22,7 +23,7 @@ class NotesNormalList extends StatelessWidget {
             )),
             SliverList(delegate: SliverChildBuilderDelegate(
                 childCount: BlocProvider.of<NotesCubit>(context).pinnedNotes.length,
-              (context, index) => NoteWidget(isGrid: false, note: BlocProvider.of<NotesCubit>(context).pinnedNotes[index]))),
+              (context, index) => NoteWidget(inArchivedScreen: inArchivedScreen,isGrid: false, note: BlocProvider.of<NotesCubit>(context).pinnedNotes[index]))),
             if(BlocProvider.of<NotesCubit>(context).pinnedNotes.isNotEmpty&&BlocProvider.of<NotesCubit>(context).notes.isNotEmpty)
             const SliverToBoxAdapter(child: Padding(
               padding: EdgeInsets.symmetric(vertical: 8),
@@ -30,7 +31,7 @@ class NotesNormalList extends StatelessWidget {
             )),
             SliverList(delegate: SliverChildBuilderDelegate(
               childCount: BlocProvider.of<NotesCubit>(context).notes.length,
-                    (context, index) =>NoteWidget(isGrid: false, note: BlocProvider.of<NotesCubit>(context).notes[index]))),
+                    (context, index) =>NoteWidget(inArchivedScreen: inArchivedScreen,isGrid: false, note: BlocProvider.of<NotesCubit>(context).notes[index]))),
             SliverToBoxAdapter(child: (context.height/13).ph)
           ],
         );

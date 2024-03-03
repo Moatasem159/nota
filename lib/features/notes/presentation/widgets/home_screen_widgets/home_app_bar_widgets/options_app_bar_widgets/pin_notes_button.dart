@@ -5,14 +5,18 @@ import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_st
 import 'package:nota/features/notes/presentation/cubits/notes_cubit/notes_cubit.dart';
 import 'package:nota/features/notes/presentation/widgets/custom_icon_button.dart';
 class PinNotesButton extends StatelessWidget {
-  const PinNotesButton({super.key});
+  final bool inArchivedScreen;
+  const PinNotesButton({super.key, required this.inArchivedScreen});
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AppBarCubit, AppBarStates>(
       listener: (context, state) {
-        if(state is PinNotesSuccessState)
+        if(!inArchivedScreen)
         {
-          BlocProvider.of<NotesCubit>(context).getNotes();
+          if(state is PinNotesSuccessState)
+          {
+            BlocProvider.of<NotesCubit>(context).getNotes();
+          }
         }
       },
       builder: (context, state) {

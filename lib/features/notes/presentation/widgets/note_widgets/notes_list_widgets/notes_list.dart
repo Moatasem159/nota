@@ -4,15 +4,16 @@ import 'package:nota/features/notes/presentation/cubits/change_list_view_cubit/c
 import 'package:nota/features/notes/presentation/widgets/note_widgets/notes_list_widgets/notes_grid_list/notes_grid_list.dart';
 import 'package:nota/features/notes/presentation/widgets/note_widgets/notes_list_widgets/notes_normal_list.dart';
 class NotesList extends StatelessWidget {
-  const NotesList({super.key});
+  final bool inArchivedScreen;
+  const NotesList({super.key, required this.inArchivedScreen});
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ChangeListViewCubit,bool>(
       builder: (context, state) {
         if (state) {
-          return const NotesGridList();
+          return NotesGridList(inArchivedScreen: inArchivedScreen,);
         } else {
-          return const NotesNormalList();
+          return NotesNormalList(inArchivedScreen: inArchivedScreen,);
         }
       },
     );

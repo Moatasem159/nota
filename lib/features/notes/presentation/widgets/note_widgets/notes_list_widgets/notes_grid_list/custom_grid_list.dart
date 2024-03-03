@@ -6,7 +6,8 @@ import 'package:nota/features/notes/presentation/widgets/note_widgets/note_widge
 class CustomGridList extends StatelessWidget {
   final List<Note> notes;
   final int padding;
-  const CustomGridList({super.key, required this.notes, required this.padding});
+  final bool inArchivedScreen;
+  const CustomGridList({super.key, required this.notes, required this.padding, required this.inArchivedScreen});
   @override
   Widget build(BuildContext context) {
     return MasonryGridView.builder(
@@ -15,7 +16,7 @@ class CustomGridList extends StatelessWidget {
       padding: EdgeInsets.only(bottom: context.height / padding),
       itemCount:notes.length,
       gridDelegate: const SliverSimpleGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-      itemBuilder: (_, index) =>NoteWidget(isGrid: true, note:notes[index]),
+      itemBuilder: (_, index) =>NoteWidget(inArchivedScreen: inArchivedScreen,isGrid: true, note:notes[index]),
     );
   }
 }

@@ -8,13 +8,15 @@ import 'package:nota/core/utils/app_constants.dart';
 import 'package:nota/features/notes/domain/entities/note.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_cubit.dart';
 import 'package:nota/features/notes/presentation/cubits/add_note_cubit/add_note_state.dart';
+import 'package:nota/features/notes/presentation/cubits/archived_notes_cubit/archived_notes_cubit.dart';
 import 'package:nota/features/notes/presentation/cubits/notes_cubit/notes_cubit.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_appbar.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_body/add_note_screen_body_builder.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/bottom_bar/add_note_bottom_bar.dart';
 class AddNoteScreen extends StatelessWidget {
   final Note? note;
-  const AddNoteScreen({super.key, this.note});
+  final bool fromArchivedScreen;
+  const AddNoteScreen({super.key, this.note, required this.fromArchivedScreen});
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -24,9 +26,12 @@ class AddNoteScreen extends StatelessWidget {
         ..content.text = note?.note ?? '',
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(
         listener: (BuildContext context, AddNoteStates state) {
-          if (state is AddNoteSuccessState && state.isAdded) {
-            BlocProvider.of<NotesCubit>(context).getNotes();
-          }
+          if(!fromArchivedScreen)
+            {
+              if (state is AddNoteSuccessState && state.isAdded) {
+                BlocProvider.of<NotesCubit>(context).getNotes();
+              }
+            }
         },
         buildWhen: (previous, current) => previous != current,
         builder: (context, state) {
@@ -43,7 +48,13 @@ class AddNoteScreen extends StatelessWidget {
                 }
                 else {
                   BlocProvider.of<AddNoteCubit>(context).editNote(note!);
-                  BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
+                  if(fromArchivedScreen){
+                    BlocProvider.of<ArchivedNotesCubit>(context).getArchivedNotes();
+                  }
+                  else{
+                    BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
+                  }
+
                 }
               },
               child: SafeArea(
@@ -57,7 +68,12 @@ class AddNoteScreen extends StatelessWidget {
                         }
                         else {
                           BlocProvider.of<AddNoteCubit>(context).editNote(note!);
-                          BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
+                          if(fromArchivedScreen){
+                            BlocProvider.of<ArchivedNotesCubit>(context).getArchivedNotes();
+                          }
+                          else{
+                            BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
+                          }
                           context.pop();
                         }
                       },

@@ -8,7 +8,8 @@ class NotesSliverGridList extends StatelessWidget {
   final int padding;
   final List<Note> notes;
   final bool showTitle;
-  const NotesSliverGridList({super.key, required this.title, required this.padding, required this.notes,this.showTitle=true,});
+  final bool inArchivedScreen;
+  const NotesSliverGridList({super.key, required this.title, required this.padding, required this.notes,this.showTitle=true, required this.inArchivedScreen,});
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
@@ -18,7 +19,7 @@ class NotesSliverGridList extends StatelessWidget {
           if(showTitle)
           ListTitle(title:title),
           10.ph,
-          CustomGridList(notes: notes,padding: padding),
+          CustomGridList(inArchivedScreen:inArchivedScreen,notes: notes,padding: padding),
         ],
       ),
     );

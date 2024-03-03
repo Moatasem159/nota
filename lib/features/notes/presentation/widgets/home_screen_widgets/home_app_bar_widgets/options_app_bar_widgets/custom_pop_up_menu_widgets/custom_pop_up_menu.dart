@@ -15,11 +15,11 @@ class CustomPopUpMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<ArchiveNotesCubit, ArchiveNotesStates>(
       listener: (context, state) {
-        if (state is ArchiveNoteSuccessState && state.inArchivedScreen) {
+        if (state is ArchiveNoteSuccessState && inArchivedScreen) {
           BlocProvider.of<ArchivedNotesCubit>(context).getArchivedNotes();
           BlocProvider.of<AppBarCubit>(context).removeSelection();
         }
-        if (state is ArchiveNoteSuccessState && !state.inArchivedScreen) {
+        if (state is ArchiveNoteSuccessState && !inArchivedScreen) {
           BlocProvider.of<NotesCubit>(context).getNotes();
           BlocProvider.of<AppBarCubit>(context).removeSelection();
         }

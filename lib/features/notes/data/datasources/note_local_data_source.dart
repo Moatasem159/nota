@@ -1,15 +1,11 @@
 import 'package:nota/core/database/hive_consumer.dart';
 import 'package:nota/core/utils/app_constants.dart';
 import 'package:nota/features/notes/domain/entities/note.dart';
-
 abstract class NoteLocalDataSource {
   Future<int> addNote(Note note);
-
   Future<void> archiveNotes(List<Note> note,{bool archive=true});
-
   Future<void> deleteNotes(List<Note> note);
 }
-
 class NoteLocalDataSourceImpl implements NoteLocalDataSource {
   final HiveConsumer _hive;
 
@@ -29,6 +25,7 @@ class NoteLocalDataSourceImpl implements NoteLocalDataSource {
     newNotes.addAll(notes);
     if (archive) {
       for (int i = 0; i < notes.length; i++) {
+        notes[i].pinned=false;
         await notes[i].delete();
         newNotes[i].boxName = AppConstants.archivedNoteBox;
       }

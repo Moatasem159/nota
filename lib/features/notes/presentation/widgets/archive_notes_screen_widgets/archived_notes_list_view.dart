@@ -15,6 +15,7 @@ class ArchivedNotesListView extends StatelessWidget {
           return ListView.builder(
               itemCount: BlocProvider.of<ArchivedNotesCubit>(context).archivedNotes.length,
               itemBuilder: (context, index) => NoteWidget(
+                inArchivedScreen: true,
                   isGrid: false,
                   note: BlocProvider.of<ArchivedNotesCubit>(context).archivedNotes[index]));
         }

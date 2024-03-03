@@ -12,7 +12,7 @@ class ArchivedNotesGirdViewList extends StatelessWidget {
     return BlocBuilder<ArchivedNotesCubit, ArchivedNotesStates>(
       builder: (context, state) {
         if (BlocProvider.of<ArchivedNotesCubit>(context).archivedNotes.isNotEmpty) {
-          return CustomGridList(notes: BlocProvider.of<ArchivedNotesCubit>(context).archivedNotes, padding: 15);
+          return CustomGridList(inArchivedScreen: true,notes: BlocProvider.of<ArchivedNotesCubit>(context).archivedNotes, padding: 15);
         }
         return const EmptyBody(
             title: AppStrings.archiveBodyTitle,
