@@ -29,3 +29,6 @@ class Note extends HiveObject {
    return title==''&&note==''&&imagePath==''?true:false;
   }
 }
+enum NoteType{
+  home,archive,delete
+}

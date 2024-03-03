@@ -18,6 +18,7 @@ abstract class AppStrings{
   static const String createNewLabel="Create new label";
   static const String deleted="Deleted";
   static const String delete="Delete";
+  static const String restore="Restore";
   static const String settings="Settings";
   static const String help="Help & feedback";
   static const String archiveBodyTitle="Your archive notes appear here";

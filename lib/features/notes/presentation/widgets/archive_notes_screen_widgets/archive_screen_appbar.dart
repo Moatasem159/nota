@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/core/utils/app_strings.dart';
+import 'package:nota/features/notes/domain/entities/note.dart';
 import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_cubit.dart';
 import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_state.dart';
 import 'package:nota/features/notes/presentation/widgets/custom_icon_button.dart';
@@ -24,7 +25,7 @@ class ArchiveScreenAppBar extends StatelessWidget implements PreferredSizeWidget
                       CustomIconButton(onTap: () {}, icon: Icons.search),
                       const SwitchListViewButton()
                     ])
-              : const OptionsAppBar(inArchivedScreen: true),
+              : const OptionsAppBar(noteType: NoteType.archive),
         );
       },
     );

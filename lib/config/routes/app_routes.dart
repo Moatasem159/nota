@@ -10,6 +10,7 @@ abstract class Routes {
   static const String deletedRoute = "deleted";
   static const String settingsRoute = "settings";
 }
+
 abstract class AppRoute {
   static final GoRouter router = GoRouter(
     initialLocation: Routes.initialRoute,
@@ -17,30 +18,31 @@ abstract class AppRoute {
       GoRoute(
           path: Routes.initialRoute,
           name: Routes.homeRoute,
-          builder: (__, _) =>const HomeScreen(),
-          routes:<GoRoute>[
+          builder: (__, _) => const HomeScreen(),
+          routes: <GoRoute>[
             GoRoute(
               path: "archived",
               name: Routes.archivedRoute,
-              builder: (__, _) =>const ArchivedNotesScreen(),
+              builder: (__, state) => const ArchivedNotesScreen(),
             ),
             GoRoute(
               path: "deleted",
               name: Routes.deletedRoute,
-              builder: (__, _) =>const DeletedNotesScreen(),
+              builder: (__, _) => const DeletedNotesScreen(),
             ),
-          ]
-      ),
-
+          ]),
     ],
   );
+
   static String location() {
-    final RouteMatch lastMatch = router.routerDelegate.currentConfiguration.last;
-    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch ? lastMatch.matches:router.routerDelegate.currentConfiguration;
+    final RouteMatch lastMatch =
+        router.routerDelegate.currentConfiguration.last;
+    final RouteMatchList matchList = lastMatch is ImperativeRouteMatch
+        ? lastMatch.matches
+        : router.routerDelegate.currentConfiguration;
     String location = matchList.uri.toString().replaceFirst("/", '');
-    if(location.isEmpty)
-    {
-      location =Routes.homeRoute;
+    if (location.isEmpty) {
+      location = Routes.homeRoute;
     }
     return location;
   }
