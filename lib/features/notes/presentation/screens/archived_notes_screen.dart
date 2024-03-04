@@ -22,11 +22,12 @@ class ArchivedNotesScreen extends StatelessWidget {
         builder: (context, state) {
           return AnnotatedRegion<SystemUiOverlayStyle>(
             value: AppTheme.systemUiOverlayStyle().copyWith(
-                systemNavigationBarColor:
-                    Theme.of(context).colorScheme.background,
-                statusBarColor: !BlocProvider.of<AppBarCubit>(context).isBase
-                    ? Theme.of(context).appBarTheme.backgroundColor
-                    : null),
+              systemNavigationBarColor:
+                  Theme.of(context).colorScheme.background,
+              statusBarColor: !BlocProvider.of<AppBarCubit>(context).isBase
+                  ? Theme.of(context).appBarTheme.backgroundColor
+                  : null,
+            ),
             child: SafeArea(
               child: Scaffold(
                 backgroundColor: Theme.of(context).colorScheme.background,

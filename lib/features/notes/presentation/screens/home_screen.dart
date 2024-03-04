@@ -14,20 +14,21 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AppBarCubit, AppBarStates>(
       buildWhen: (previous, current) => current != previous,
-      builder: (context, state) {
+      builder: (_,__) {
         return AnnotatedRegion<SystemUiOverlayStyle>(
           value: AppTheme.systemUiOverlayStyle().copyWith(
-              statusBarColor: !BlocProvider.of<AppBarCubit>(context).isBase
-                  ? Theme.of(context).appBarTheme.backgroundColor
-                  : null),
+            statusBarColor: !BlocProvider.of<AppBarCubit>(context).isBase
+                ? Theme.of(context).appBarTheme.backgroundColor
+                : null,
+          ),
           child: SafeArea(
             child: Scaffold(
-              backgroundColor: Theme.of(context).colorScheme.background,
+              backgroundColor:Theme.of(context).colorScheme.background,
               appBar: const HomeAppBar(),
-              body: const HomeScreenBody(),
               drawer: const CustomDrawer(),
+              body: const HomeScreenBody(),
               // bottomNavigationBar: const CustomBottomNavBar(),
-              floatingActionButton:const AddNoteButton(),
+              floatingActionButton: const AddNoteButton(),
             ),
           ),
         );

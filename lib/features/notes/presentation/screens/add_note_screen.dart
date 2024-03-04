@@ -13,66 +13,79 @@ import 'package:nota/features/notes/presentation/cubits/notes_cubit/notes_cubit.
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_appbar.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/add_note_screen_body/add_note_screen_body_builder.dart';
 import 'package:nota/features/notes/presentation/widgets/add_note_screen_widgets/bottom_bar/add_note_bottom_bar.dart';
+
 class AddNoteScreen extends StatelessWidget {
   final Note? note;
   final bool fromArchivedScreen;
+
   const AddNoteScreen({super.key, this.note, required this.fromArchivedScreen});
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => AddNoteCubit(di.sl())
-      ..note=note??Note(date: DateTime.now().toIso8601String(),color:Colors.transparent.value,boxName: AppConstants.noteBox)
+        ..note = note ??
+            Note(
+                date: DateTime.now().toIso8601String(),
+                color: Colors.transparent.value,
+                boxName: AppConstants.noteBox)
         ..title.text = note?.title ?? ''
         ..content.text = note?.note ?? '',
       child: BlocConsumer<AddNoteCubit, AddNoteStates>(
         listener: (BuildContext context, AddNoteStates state) {
-          if(!fromArchivedScreen)
-            {
-              if (state is AddNoteSuccessState && state.isAdded) {
-                BlocProvider.of<NotesCubit>(context).getNotes();
-              }
+          if (!fromArchivedScreen) {
+            if (state is AddNoteSuccessState && state.isAdded) {
+              BlocProvider.of<NotesCubit>(context).getNotes();
             }
+          }
         },
         buildWhen: (previous, current) => previous != current,
         builder: (context, state) {
           AddNoteCubit cubit = BlocProvider.of<AddNoteCubit>(context);
           return AnnotatedRegion<SystemUiOverlayStyle>(
             value: AppTheme.systemUiOverlayStyle().copyWith(
-                statusBarColor: cubit.note.color == Colors.transparent.value?Theme.of(context).colorScheme.background : Color(cubit.note.color),
-                systemNavigationBarColor:cubit.note.color == Colors.transparent.value?Theme.of(context).colorScheme.background:Color(cubit.note.color)),
+              statusBarColor: cubit.note.color == Colors.transparent.value
+                  ? Theme.of(context).colorScheme.background
+                  : Color(cubit.note.color),
+              systemNavigationBarColor:
+                  cubit.note.color == Colors.transparent.value
+                      ? Theme.of(context).colorScheme.background
+                      : Color(cubit.note.color),
+            ),
             child: PopScope(
-              canPop:true,
+              canPop: true,
               onPopInvoked: (didPop) {
                 if (note == null) {
                   BlocProvider.of<AddNoteCubit>(context).addNote();
-                }
-                else {
+                } else {
                   BlocProvider.of<AddNoteCubit>(context).editNote(note!);
-                  if(fromArchivedScreen){
-                    BlocProvider.of<ArchivedNotesCubit>(context).getArchivedNotes();
-                  }
-                  else{
+                  if (fromArchivedScreen) {
+                    BlocProvider.of<ArchivedNotesCubit>(context)
+                        .getArchivedNotes();
+                  } else {
                     BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
                   }
-
                 }
               },
               child: SafeArea(
                 child: Scaffold(
-                    backgroundColor:cubit.note.color==Colors.transparent.value ? Theme.of(context).colorScheme.background : Color(cubit.note.color),
+                    backgroundColor:
+                        cubit.note.color == Colors.transparent.value
+                            ? Theme.of(context).colorScheme.background
+                            : Color(cubit.note.color),
                     appBar: AddNoteScreenAppbar(
                       arrowBack: () {
-                        if (note == null)
-                        {
+                        if (note == null) {
                           BlocProvider.of<AddNoteCubit>(context).addNote();
-                        }
-                        else {
-                          BlocProvider.of<AddNoteCubit>(context).editNote(note!);
-                          if(fromArchivedScreen){
-                            BlocProvider.of<ArchivedNotesCubit>(context).getArchivedNotes();
-                          }
-                          else{
-                            BlocProvider.of<NotesCubit>(context).getNotes(edit: true);
+                        } else {
+                          BlocProvider.of<AddNoteCubit>(context)
+                              .editNote(note!);
+                          if (fromArchivedScreen) {
+                            BlocProvider.of<ArchivedNotesCubit>(context)
+                                .getArchivedNotes();
+                          } else {
+                            BlocProvider.of<NotesCubit>(context)
+                                .getNotes(edit: true);
                           }
                           context.pop();
                         }

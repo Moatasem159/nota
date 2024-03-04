@@ -11,9 +11,9 @@ class NotesList extends StatelessWidget {
     return BlocBuilder<ChangeListViewCubit,bool>(
       builder: (context, state) {
         if (state) {
-          return NotesGridList(inArchivedScreen: inArchivedScreen,);
+          return NotesGridList(inArchivedScreen: inArchivedScreen);
         } else {
-          return NotesNormalList(inArchivedScreen: inArchivedScreen,);
+          return NotesNormalList(inArchivedScreen: inArchivedScreen);
         }
       },
     );

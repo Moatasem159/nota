@@ -7,11 +7,19 @@ import 'package:nota/features/notes/presentation/cubits/archived_notes_cubit/arc
 import 'package:nota/features/notes/presentation/cubits/notes_cubit/notes_cubit.dart';
 import 'package:nota/features/notes/presentation/screens/add_note_screen.dart';
 import 'package:nota/features/notes/presentation/widgets/note_widgets/note_builder.dart';
+
 class NoteWidget extends StatelessWidget {
   final bool inArchivedScreen;
   final Note note;
   final bool isGrid;
-  const NoteWidget({super.key, required this.isGrid, required this.note, required this.inArchivedScreen});
+
+  const NoteWidget({
+    super.key,
+    required this.isGrid,
+    required this.note,
+    required this.inArchivedScreen,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,16 +28,21 @@ class NoteWidget extends StatelessWidget {
         closedElevation: 5,
         openElevation: 10,
         openColor: Theme.of(context).colorScheme.background,
-        closedColor: note.color == Colors.transparent.value ? Theme.of(context).colorScheme.background : Color(note.color),
+        closedColor: note.color == Colors.transparent.value
+            ? Theme.of(context).colorScheme.background
+            : Color(note.color),
         middleColor: Theme.of(context).colorScheme.background,
-        closedShape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        openBuilder: (_, action) => inArchivedScreen?BlocProvider.value(
-          value: BlocProvider.of<ArchivedNotesCubit>(context),
-          child: AddNoteScreen(note: note,fromArchivedScreen: true),
-        ):BlocProvider.value(
-          value: BlocProvider.of<NotesCubit>(context),
-          child: AddNoteScreen(note: note,fromArchivedScreen: false),
-        ),
+        closedShape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        openBuilder: (_, action) => inArchivedScreen
+            ? BlocProvider.value(
+                value: BlocProvider.of<ArchivedNotesCubit>(context),
+                child: AddNoteScreen(note: note, fromArchivedScreen: true),
+              )
+            : BlocProvider.value(
+                value: BlocProvider.of<NotesCubit>(context),
+                child: AddNoteScreen(note: note, fromArchivedScreen: false),
+              ),
         closedBuilder: (_, action) => BlocProvider<AppBarCubit>.value(
           value: BlocProvider.of<AppBarCubit>(context),
           child: NoteBuilder(
