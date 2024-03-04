@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_cubit.dart';
 import 'package:nota/features/notes/presentation/cubits/app_bar_cubit/app_bar_state.dart';
-import 'package:nota/features/notes/presentation/widgets/appbars/home_appbar.dart';
 import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/home_app_bar_widgets/options_app_bar_widgets/options_app_bar.dart';
+import 'package:nota/features/notes/presentation/widgets/home_screen_widgets/home_app_bar_widgets/search_app_bar.dart';
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
   @override
@@ -13,12 +13,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
         return AnimatedSwitcher(
           duration:const Duration(milliseconds: 500),
           child:BlocProvider.of<AppBarCubit>(context).isBase
-              ? const MainHomeAppBar()
+              ? const SearchAppBar()
               : const OptionsAppBar(),
         );
       },
     );
   }
   @override
-  Size get preferredSize=>const Size(double.infinity,60);
+  Size get preferredSize=>const Size(double.infinity,80);
 }
